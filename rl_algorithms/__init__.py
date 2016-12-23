@@ -1,3 +1,3 @@
-from rl_algorithms.tabular_td_zero import TabularTdZero
+from rl_algorithms.algorithms import TabularTdZero, EveryVisitMC
 
-__all__ = ['TabularTdZero']
+__all__ = ['TabularTdZero', 'EveryVisitMC']

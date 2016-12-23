@@ -21,3 +21,24 @@ class TabularTdZero(object):
         """
         delta = reward + self.discount_rate * self.values[next_state] - self.values[state]
         self.values[state] += self.step_size * delta
+
+
+class EveryVisitMC(object):
+
+    def __init__(self, observation_space, action_space, discount_rate=0.01, step_size=0.01):
+        self.observation_space = observation_space
+        self.action_space = action_space
+        self.values = np.zeros(self.observation_space.n, np.float64)  # uniform initialization (zero)
+        self.discount_rate = discount_rate
+        self.step_size = step_size
+
+    def update(self, states, rewards):
+        assert len(states) == len(rewards)
+        T = len(states)
+        targets = np.zeros_like(self.values, np.float64)
+
+        _sum = 0
+        for t in reversed(range(T)):
+            _sum += rewards[t] + self.discount_rate * _sum
+            targets[states[t]] = _sum
+            self.values[states[t]] += self.step_size * (targets[states[t]] - self.values[states[t]])
