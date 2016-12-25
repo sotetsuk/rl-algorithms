@@ -6,7 +6,7 @@ This repository collects the python implements of psuedo-codes in ["Algorithms f
 |1|Tabular TD(0)|TabularTdZero|[FrozenLake-v0](https://gym.openai.com/envs/FrozenLake-v0)|
 |2|Every-visit Monte-Carlo|EveryVistMC|[FrozenLake-v0](https://gym.openai.com/envs/FrozenLake-v0)|
 |3|Tabular TD(λ)|TabularTDLambda|[FrozenLake-v0](https://gym.openai.com/envs/FrozenLake-v0)|
-|4|TD(λ) w/ function approximation|||
+|4|TD(λ) w/ function approximation|TDLambdaLinFApp||
 |5|GTD2|||
 |6|RLSTD|||
 |7|λ-LSPE|||

@@ -96,3 +96,22 @@ class QLearningLinFApp(object):
 
         delta = reward + self.discount_rate * next_q_max - np.dot(self.theta, self.phi(state, action))
         self.theta += self.step_size * delta * self.phi(state, action)
+
+
+class TDLambdaLinFApp(object):
+
+    def __init__(self, _lambda, n_params, observation_space, action_space, discount_rate=0.01, step_size=0.01):
+        self.observation_space = observation_space
+        self.action_space = action_space
+        self.discount_rate = discount_rate
+        self.step_size = step_size
+
+        self._lambda = _lambda
+        self.theta = np.zeros(n_params, np.float64)
+        self.eligibility_trace = np.zeros_like(self.theta, np.float64)
+        self.phi = None
+
+    def update(self, state, reward, next_state):
+        delta = reward + self.discount_rate * np.dot(self.theta, self.phi(next_state)) - self.phi(state)
+        self.eligibility_trace = self.phi(state) + self._lambda * self.discount_rate * self.eligibility_trace
+        self.theta += self.step_size * delta * self.eligibility_trace
