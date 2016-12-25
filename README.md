@@ -17,7 +17,7 @@ This repository collects the python implements of psuedo-codes in ["Algorithms f
 |12|Tabular Q-learning|TabularQLearning|[FrozenLake-v0](https://gym.openai.com/envs/FrozenLake-v0)|
 |13|Q-leraning w/ function approximation|QLearningLinFApp|[MountainCar-v0](https://gym.openai.com/envs/MountainCar-v0)|
 |14|fitted Q|||
-|15|SARSA(λ)|||
+|15|SARSA(λ)|SARSA|[MountainCar-v0](https://gym.openai.com/envs/MountainCar-v0)|
 |16|LTSD-Q(λ)|||
 |17|LSPI(λ)|||
 |18|Actor-critic|||
