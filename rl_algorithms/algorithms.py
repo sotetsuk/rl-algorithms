@@ -115,3 +115,25 @@ class TDLambdaLinFApp(object):
         delta = reward + self.discount_rate * np.dot(self.theta, self.phi(next_state)) - self.phi(state)
         self.eligibility_trace = self.phi(state) + self._lambda * self.discount_rate * self.eligibility_trace
         self.theta += self.step_size * delta * self.eligibility_trace
+
+
+class SARSA(object):
+
+    def __init__(self, _lambda, n_params, observation_space, action_space, discount_rate=0.01, step_size=0.01):
+        self.observation_space = observation_space
+        self.action_space = action_space
+        self.discount_rate = discount_rate
+        self.step_size = step_size
+
+        self._lambda = _lambda
+        self.theta = np.zeros(n_params, np.float64)
+        self.eligibility_trace = np.zeros_like(self.theta)
+        self.phi = None
+
+    def update(self, state, action, reward, next_state, next_action):
+
+        delta = reward + self.discount_rate * np.dot(self.theta, self.phi(next_state, next_action)) \
+                - np.dot(self.theta, self.phi(state, action))
+        self.eligibility_trace = self.phi(state, action) + self._lambda * self.discount_rate * self.eligibility_trace
+        self.theta += self.step_size * delta * self.eligibility_trace
+
